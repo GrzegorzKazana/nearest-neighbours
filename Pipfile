@@ -16,6 +16,8 @@ numpy = "*"
 matplotlib = "*"
 seaborn = "*"
 tensorflow = "*"
+ipykernel = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.7"
