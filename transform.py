@@ -5,7 +5,10 @@ import itertools
 import cv2
 import numpy as np
 
-DEFAULT_SIZE_LENGTH = 244
+DEFAULT_SIZE_LENGTH = 224
+
+# def mirror_fill(image: np.ndarray, desired_shape: typing.Tuple[int, int]) -> np.ndarray:
+#     ...
 
 
 def oscillate(image: np.ndarray, axis: str = "rows"):
@@ -38,6 +41,10 @@ def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
             transformed_image[height + i, :, :] = entry
 
     return cv2.resize(transformed_image * (1.0 / 256), (side_length, side_length))
+
+
+def stretch(image: np.ndarray, desired_shape: typing.Tuple[int, int]) -> np.ndarray:
+    # print(image.shape, desired_shape)
 
 
 def stretch(image: np.ndarray, side_length: int) -> np.ndarray:
