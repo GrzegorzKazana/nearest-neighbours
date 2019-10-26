@@ -8,6 +8,7 @@ black = "*"
 ipython = "*"
 pre-commit = "*"
 pycodestyle = "*"
+jupyter = "*"
 
 [packages]
 pandas = "*"
@@ -18,6 +19,7 @@ seaborn = "*"
 tensorflow = "*"
 ipykernel = "*"
 jupyter = "*"
+opencv-python = "*"
 
 [requires]
 python_version = "3.7"
