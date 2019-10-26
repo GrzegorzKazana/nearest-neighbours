@@ -23,7 +23,6 @@ def oscillate(image: np.ndarray, axis: str = "rows"):
         raise ValueError("Illegal axis")
 
 
-
 def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
     height, width, channels_count = image.shape
     max_dim = max(height, width)
@@ -43,7 +42,6 @@ def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
 
 def stretch(image: np.ndarray, side_length: int) -> np.ndarray:
     return cv2.resize(image, (side_length, side_length))
-
 
 def load_image_to_numpy(
     image_path: pathlib.Path,
