@@ -9,6 +9,7 @@ DEFAULT_SIZE_LENGTH = 244
 # def mirror_fill(image: np.ndarray, desired_shape: typing.Tuple[int, int]) -> np.ndarray:
 #     ...
 
+
 def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
     height, width, channels_count = image.shape
     max_dim = max(height, width)
@@ -21,8 +22,6 @@ def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
         transformed_image[height:, :, :] = image[height : 2 * height - max_dim - 1 : -1, :, :]
     return cv2.resize(transformed_image * 1 / 256, (side_length, side_length))
 
-def stretch(image: np.ndarray, desired_shape: typing.Tuple[int, int]) -> np.ndarray:
-    # print(image.shape, desired_shape)
 
 def stretch(image: np.ndarray, side_length: int) -> np.ndarray:
     return cv2.resize(image, (side_length, side_length))
