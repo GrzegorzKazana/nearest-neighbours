@@ -1,30 +1,43 @@
 import typing
 import pathlib
+import itertools
 
 import cv2
 import numpy as np
 
 DEFAULT_SIZE_LENGTH = 224
 
-# def mirror_fill(image: np.ndarray, desired_shape: typing.Tuple[int, int]) -> np.ndarray:
-#     ...
+
+def oscillate(image: np.ndarray, axis: str = "rows"):
+    height, width, _ = image.shape
+
+    if axis == "rows":
+        oscillator = itertools.cycle(itertools.chain(range(0, height), range(height - 1, 0)))
+        for row in oscillator:
+            yield image[height - row - 1, :, :]
+    elif axis == "columns":
+        oscillator = itertools.cycle(itertools.chain(range(0, width), range(width - 1, 0)))
+        for column in oscillator:
+            yield image[:, width - column - 1, :]
+    else:
+        raise ValueError("Illegal axis")
 
 
 def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
     height, width, channels_count = image.shape
     max_dim = max(height, width)
     transformed_image = np.zeros((max_dim, max_dim, channels_count))
+
     if height > width:
         transformed_image[:, :width, :] = image
-        transformed_image[:, width:, :] = image[:, width : 2 * width - max_dim - 1 : -1, :]
+        for i, entry in enumerate(itertools.islice(oscillate(image, axis="columns"), max_dim - width)):
+            transformed_image[:, width + i, :] = entry
     else:
         transformed_image[:height, :, :] = image
-        transformed_image[height:, :, :] = image[height : 2 * height - max_dim - 1 : -1, :, :]
-    return cv2.resize(transformed_image * 1 / 256, (side_length, side_length))
+        for i, entry in enumerate(itertools.islice(oscillate(image, axis="rows"), max_dim - height)):
+            transformed_image[height + i, :, :] = entry
 
-
-def stretch(image: np.ndarray, desired_shape: typing.Tuple[int, int]) -> np.ndarray:
-    # print(image.shape, desired_shape)
+    return cv2.resize(transformed_image * (1.0 / 256), (side_length, side_length))
 
 
 def stretch(image: np.ndarray, side_length: int) -> np.ndarray:
@@ -47,5 +60,5 @@ def show_image(image):
 
 
 if __name__ == "__main__":
-    image = load_image_to_numpy(pathlib.Path("img3.jpg"), resizing_strategy=mirror_fill, side_length=400)
+    image = load_image_to_numpy(pathlib.Path("img4.jpg"), resizing_strategy=mirror_fill, side_length=400)
     show_image(image)
