@@ -17,6 +17,8 @@ numpy = "*"
 matplotlib = "*"
 seaborn = "*"
 tensorflow = "*"
+ipykernel = "*"
+jupyter = "*"
 opencv-python = "*"
 
 [requires]
