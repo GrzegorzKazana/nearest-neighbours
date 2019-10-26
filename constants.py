@@ -1,7 +1,5 @@
 LABELS_DATA_PATH = "./data/labels.csv"
-
-TASK2_CLASS_LABELS = ["bathroom", "bedroom", "dining_room", "house", "kitchen", "living_room"]
-TASK2_CLASS_COL = "task2_class"
+TASK3_CLASS_COL = "standard"
 ROOM_LABELS = ["Bathroom", "Dining room", "Bedroom", "Living room", "Kitchen", "House"]
 OBJECT_LABELS = [
     "Bathroom cabinet",
