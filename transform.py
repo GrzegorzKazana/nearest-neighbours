@@ -23,6 +23,7 @@ def oscillate(image: np.ndarray, axis: str = "rows"):
         raise ValueError("Illegal axis")
 
 
+
 def mirror_fill(image: np.ndarray, side_length: int) -> np.ndarray:
     height, width, channels_count = image.shape
     max_dim = max(height, width)
