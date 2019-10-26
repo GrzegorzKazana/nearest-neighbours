@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 from load_labels import get_labels_by_filename
-from transform import load_image_to_numpy
+from transform import load_image_to_numpy, mirror_fill
 from constants import OBJECT_LABELS
 from helpers import get_paths, get_paths_and_names, filter_non_existent_paths, serialize_labels_with_images
 
@@ -22,7 +22,12 @@ def main():
     path_w_names = get_paths_and_names(img_paths)
     path_w_names = filter_non_existent_paths(path_w_names, df)
 
-    labels_w_imgs = [(get_labels_by_filename(df, name), load_image_to_numpy(path)) for path, name in path_w_names]
+
+
+    labels_w_imgs = [(get_labels_by_filename(df, name), load_image_to_numpy(path, 
+                                                                            resizing_strategy=mirror_fill, 
+                                                                            side_length=224)) for path, name in path_w_names]
+
 
     serialize_labels_with_images(labels_w_imgs, labels_path=labels_np_path, images_path=images_np_path)
 
