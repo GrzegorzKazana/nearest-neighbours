@@ -149,6 +149,5 @@ if __name__ == "__main__":
     parser.add_argument("output", type=str, help="Answer file directory")
     args = parser.parse_args()
     input_path = args.input
-    print(dir(args))
     output_path = generate_answers_filename(args.output)
     main(input_path, output_path)
