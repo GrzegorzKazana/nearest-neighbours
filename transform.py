@@ -59,5 +59,5 @@ def show_image(image):
 
 
 if __name__ == "__main__":
-    image = load_image_to_numpy(pathlib.Path("img4.jpg"), resizing_strategy=mirror_fill, side_length=400)
+    image = load_image_to_numpy(pathlib.Path("img7.jpg"), resizing_strategy=mirror_fill, side_length=400)
     show_image(image)
