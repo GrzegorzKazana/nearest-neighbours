@@ -8,7 +8,7 @@ from helpers import get_paths, get_paths_and_names, filter_non_existent_paths, s
 
 data_path = "./data"
 labels_file = "labels.csv"
-images_dir = "main_task_data/bathroom"
+images_dir = "main_task_data"
 labels_np_file = "labels_task1.npy"
 images_np_file = "imgs_task1.npy"
 
